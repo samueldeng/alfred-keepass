@@ -15,7 +15,7 @@ aes_key = "DBn3Wrqd7rFHu8cgPXCnEzIWgaUXcRXzOplkskcy9fo="
 url = ARGV[0]
 
 
-iv = OpenSSL::Cipher::Cipher.new("AES-256-CBC").random_iv
+iv = OpenSSL::Cipher.new("AES-256-CBC").random_iv
 nonce = b64enc(iv)
 
 veri = encrypt(nonce, aes_key, iv)
