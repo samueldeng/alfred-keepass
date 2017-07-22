@@ -1,5 +1,5 @@
 def decrypt(data, key, iv)
-	decode_cipher = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+	decode_cipher = OpenSSL::Cipher.new("AES-256-CBC")
 	decode_cipher.decrypt
 	decode_cipher.key = Base64.decode64(key)
 	decode_cipher.iv = Base64.decode64(iv)
@@ -7,7 +7,7 @@ def decrypt(data, key, iv)
 end
 
 def encrypt(data, key, iv)
-	cipher_nonce = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+	cipher_nonce = OpenSSL::Cipher.new("AES-256-CBC")
 	cipher_nonce.encrypt
 	cipher_nonce.key = Base64.decode64(key)
 	cipher_nonce.iv = iv
