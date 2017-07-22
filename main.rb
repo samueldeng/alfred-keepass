@@ -44,20 +44,20 @@ resp_nonce = body["Nonce"]
 # puts body["Entries"]
 
 
-alfred_xml =  AlfredXmlFormatter.new
 entries = body["Entries"]
-entries.each do |entry|
-	title = entry["Name"]
-	username = entry["Login"]
-	password = entry["Password"]
-
-	title_plain = decrypt(title, aes_key, resp_nonce)
-	username_plain = decrypt(username, aes_key, resp_nonce)
-	password_plain = decrypt(password, aes_key, resp_nonce)
-
-	kp = KeepassItem.new(title_plain, username_plain, password_plain)
-	alfred_xml.add_kp(kp)
-	
+unless entries.nil?
+    alfred_xml =  AlfredXmlFormatter.new
+    entries.each do |entry|
+        title = entry["Name"]
+        username = entry["Login"]
+        password = entry["Password"]
+    
+        title_plain = decrypt(title, aes_key, resp_nonce)
+        username_plain = decrypt(username, aes_key, resp_nonce)
+        password_plain = decrypt(password, aes_key, resp_nonce)
+    
+        kp = KeepassItem.new(title_plain, username_plain, password_plain)
+        alfred_xml.add_kp(kp)
+    end
+    puts alfred_xml.to_string
 end
-
-puts alfred_xml.to_string
