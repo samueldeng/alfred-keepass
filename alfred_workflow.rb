@@ -21,7 +21,7 @@ class AlfredXmlFormatter
 
         string_buffer = ''
         @keepass_items.each { |kp| 
-            string_buffer += kp_item_template % [kp.title, kp.username, kp.password, kp.password]
+            string_buffer += kp_item_template % [kp.title, kp.username, “******”, “******”]
         }
 
         xml_template = 
