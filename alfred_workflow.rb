@@ -13,15 +13,14 @@ class AlfredXmlFormatter
         kp_item_template = 
         '<item uid="home" valid="YES" autocomplete="Home Folder" type="file">
             <title>%s</title>
-            <subtitle>%s %s</subtitle>
-            <text type="copy">%s</text>
+            <subtitle>%s ******</subtitle>
             <icon type="fileicon">~/</icon>
-            <arg>~/</arg>
+            <arg>%s</arg>
         </item>'
 
         string_buffer = ''
         @keepass_items.each { |kp| 
-            string_buffer += kp_item_template % [kp.title, kp.username, “******”, “******”]
+            string_buffer += kp_item_template % [kp.title, kp.username, kp.password]
         }
 
         xml_template = 
